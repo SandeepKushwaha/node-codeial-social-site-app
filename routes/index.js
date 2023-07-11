@@ -6,7 +6,7 @@ const homeController = require('../controllers/home_controller');
 
 // router configuration
 router.get('/', homeController.home);
-router.use('', require('./users'));
+router.use('/users', require('./users'));
 
 
 
