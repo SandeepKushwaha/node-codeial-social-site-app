@@ -40,7 +40,8 @@ module.exports.create = function (request, response) {
                     })
                     .catch(error => {
                         console.log('Error in creating user while signing up:', error);
-                        return response.status(500).json({ error: 'Internal server error' });
+                        // return response.status(500).json({ error: 'Internal server error' });
+                        return response.redirect('back');
                     });
             } else {
                 console.log('Error while creating user bescause of user is already exist:', user);
@@ -49,11 +50,55 @@ module.exports.create = function (request, response) {
         })
         .catch(error => {
             console.log('Error in finding user in signing up:', error);
-            return response.status(500).json({ error: 'Internal server error' });
+            // return response.status(500).json({ error: 'Internal server error' });
+            return response.redirect('back');
         });
 };
 
 // sign in and create a session for the user
 module.exports.createSession = function (request, response) {
-    // TODO implement your code here...
+    // sets to authenticate
+    // find the user
+    // User.findOne({ email: request.body.email }, function (error, user) { 
+    //     if (error) { console.log('Error in finding user in signing in'); return; }
+    //     /-/ handle user found
+
+    //     if (user) { 
+    //         /-/ handle password which don't match
+    //         if (user.password !== request.body.password) { 
+    //             return response.redirect('back');
+    //         }
+
+    //         /-/ handle session creation 
+    //         response.cookie('user_id', user.id);
+    //         return response.redirect('/users/profile');
+
+    //     } else { 
+    //         /-/ handle user not found 
+    //         console.log('User not found user::', user);
+    //         return response.redirect('back');
+    //     }
+    // });
+
+    // Find the user using promises
+    User.findOne({ email: request.body.email })
+        .exec()
+        .then(user => {
+            if (user) {
+                if (user.password !== request.body.password) {
+                    return response.redirect('back');
+                }
+
+                response.cookie('user_id', user.id);
+                return response.redirect('/users/profile');
+            } else {
+                console.log('User not found:', user);
+                return response.redirect('back');
+            }
+        })
+        .catch(error => {
+            console.log('Error in finding user in signing in:', error);
+            // return response.status(500).json({ error: 'Internal server error' });
+            return response.redirect('back');
+        });
 };
