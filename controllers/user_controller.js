@@ -1,25 +1,53 @@
 const User = require('../models/user');
 
-module.exports.user = function (request, response) {
-    return response.render('user_profile', {
-        title: 'User Profile',
-    });
+module.exports.profile = function (request, response) {
+    if (request.cookies.user_id) {
+        User.findById(request.cookies.user_id)
+            .exec()
+            .then(user => {
+                if (user) {
+                    return response.render('user_profile', {
+                        title: 'User Profile',
+                        user: user,
+                    });
+                }
+
+                return response.redirect('/users/sign-in');
+            })
+            .catch(error => {
+                console.log('Error in finding user:', error);
+                return response.redirect('/users/sign-in');
+            });
+    } else {
+        return response.redirect('/users/sign-in');
+    }
+    // return response.render('user_profile', {
+    //     title: 'User Profile',
+    // });
 };
 
 // adding some action
 
 // render the sign up page
 module.exports.signUp = function (request, response) {
-    return response.render('user_sign_up', {
-        title: 'Codeial | Sign Up',
-    });
+    if (request.cookies.user_id) {
+        return response.redirect('/users/profile');
+    } else {
+        return response.render('user_sign_up', {
+            title: 'Codeial | Sign Up',
+        });
+    }
 };
 
 // render the sign in page
 module.exports.signIn = function (request, response) {
-    return response.render('user_sign_in', {
-        title: 'Codeial | Sign In',
-    });
+    if (request.cookies.user_id) { 
+        return response.redirect('/users/profile');
+    } else {
+        return response.render('user_sign_in', {
+            title: 'Codeial | Sign In',
+        });
+    }
 };
 
 // get the sign up data by post http action method
