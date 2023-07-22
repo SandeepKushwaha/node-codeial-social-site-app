@@ -57,3 +57,14 @@ module.exports.create = function (request, response) {
 module.exports.createSession = function (request, response) {
     return response.redirect('/');
 };
+
+module.exports.destroySession = function (request, response) {
+    request.logout(function (err) {
+        if (err) {
+            console.log('Error in logging out:', err);
+            return response.status(500).json({ error: 'Internal server error' });
+        }
+        
+        return response.redirect('/');
+    });
+}
