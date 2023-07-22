@@ -1,6 +1,6 @@
 const User = require('../models/user');
 
-module.exports.user = function (request, response) {
+module.exports.profile = function (request, response) {
     return response.render('user_profile', {
         title: 'User Profile',
     });
