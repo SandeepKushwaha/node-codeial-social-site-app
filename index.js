@@ -11,6 +11,8 @@ const passport = require('passport');
 // used for user authentication
 const passportLocal = require('./config/passport-local-strategy');
 
+const MongoStore = require('connect-mongo')(session);
+
 // set up middleware that parses all the urlencoded bodies.
 app.use(express.urlencoded({
     extended: true
@@ -32,6 +34,7 @@ app.set('layout extractScripts', true);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+// mongo store is used to store the session cookie in the db
 app.use(session({
     name: 'codeial',
     // TODO change the secret before deployment in production mode
@@ -40,7 +43,22 @@ app.use(session({
     resave: false,
     cookie: {
         maxAge: (1000 * 60 * 100)
-    }
+    },
+    store: new MongoStore({
+        mongooseConnection: db,
+        autoRemove: 'disabled',
+    }, function(error) {
+        console.log(error || 'connect-mongodb setup ok');
+    })
+    // You can still use the callback here for handling errors during session setup
+    // Just include it as a separate parameter in the options object
+    // Example:
+    // store: new MongoStore({
+    //     mongooseConnection: db,
+    //     autoRemove: 'disabled',
+    // }, function (error) {
+    //     console.log(error || 'connect-mongodb setup ok');
+    // })
 }));
 
 app.use(passport.initialize());
