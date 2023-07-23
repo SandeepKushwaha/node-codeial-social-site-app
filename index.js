@@ -13,6 +13,17 @@ const passportLocal = require('./config/passport-local-strategy');
 
 const MongoStore = require('connect-mongo')(session);
 
+const sassMiddleware = require('node-sass-middleware');
+
+// set up middleware for sass
+app.use(sassMiddleware({ 
+    src: './assets/scss',
+    dest: './assets/css',
+    debug: true,
+    outputStyle: 'expanded',
+    prefix: '/css'
+}));
+
 // set up middleware that parses all the urlencoded bodies.
 app.use(express.urlencoded({
     extended: true
