@@ -7,11 +7,15 @@
         <%= title %>
     </title>
     <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
     <%- style %>
 </head>
 <body>
     <%- include('_header'); %>
+    <main class="layout-main">
     <%- body %>
+    </main>
     <%- include('_footer'); %>
     <script type="javascript/text" src="/js/script.js"></script>
     <%- script %>

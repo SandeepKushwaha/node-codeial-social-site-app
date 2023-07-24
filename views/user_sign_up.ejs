@@ -1,11 +1,16 @@
-<main>
-    <h1>Sign Up</h1>
-    
-    <form action="/users/create" method="post">
-        <input type="text" name="name" id="id" placeholder="Your Full Name" required />
-        <input type="email" name="email" id="email" placeholder="Your Email Address" required />
-        <input type="password" name="password" id="password" placeholder="Your Password" required />
-        <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required />
-        <input type="submit" value="Create Account" />
-    </form>
-</main>
+<link rel="stylesheet" href="/css/sign_up.css">
+
+<h1 class="page-title">Sign Up</h1>
+
+<form class="sign-up-content" action="/users/create" method="post">
+    <input type="text" name="name" id="id" placeholder="Your Full Name" required />
+    <input type="email" name="email" id="email" placeholder="Your Email Address" required />
+    <input type="password" name="password" id="password" placeholder="Your Password" required />
+    <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required />
+    <input type="submit" value="Create Account" />
+    <a class="auth-page-button" href="/users/sign-in">
+        <button type="button">
+            Sign In
+        </button>
+    </a>
+</form>
