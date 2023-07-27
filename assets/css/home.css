@@ -1,0 +1,11 @@
+#feed-posts .post-form {
+  align-items: center;
+}
+
+#feed-posts .posts-list-container {
+  margin: 10px 24px;
+}
+
+#feed-posts .posts-list-container ul {
+  padding: 10px auto;
+}

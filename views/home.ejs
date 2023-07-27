@@ -1,12 +1,26 @@
-<h1>Codeial / <%= title %></h1>
+<link rel="stylesheet" href="/css/home.css">
+
+<h4 style="color: #2f00b1; margin-block: 0px; text-align: center; margin-top: 10px;"><%= title %></h4>
 
 <section id="feed-posts">
-    <h4>Posts</h4>
-    <form class="post-form" action="" id="new-post-form" method="post">
-        <div class="row">
-            <label for="content">Content</label>
-            <textarea name="content" id="content" cols="30" rows="3"></textarea>
-        </div>
-        <input type="submit" value="Post">
-    </form>
+    <h3>Posts</h3>
+    <% if (locals.user) { %>
+        <form class="post-form" action="/posts/create" id="new-post-form" method="post">
+            <div class="row">
+                <label for="content">Content</label>
+                <textarea name="content" id="content" cols="30" rows="3" required></textarea>
+            </div>
+            <input type="submit" value="Post">
+        </form>
+    <% } %>
+
+    <div class="posts-list-container">
+        <ul>
+            <% for(post of posts) { %>
+                <li>
+                    <p><%= post.content %> <abbr title="<%= post.user.email %>"><span><%= post.user.name %></span></abbr> </p>
+                </li>
+            <% } %>
+        </ul>
+    </div>
 </section>

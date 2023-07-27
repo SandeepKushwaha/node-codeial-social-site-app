@@ -3,14 +3,15 @@ header {
   flex-direction: row;
   justify-content: space-between;
   padding: 0px 20px;
-  background-color: #fbfffcd5;
+  background-color: #3949AB;
   box-shadow: 0px 0px 2px 0px #414141de;
   border-bottom: 1px;
 }
 
-header h4 {
+header a, header h4 {
   text-transform: uppercase;
-  color: #8dc000f3;
+  color: #ffffff;
+  text-decoration: none;
 }
 
 header nav ul {
@@ -28,11 +29,11 @@ header nav ul li {
 }
 
 header nav ul li:hover {
-  border-bottom: 2px solid #547200f3;
+  border-bottom: 2px solid #fffffff3;
   padding-bottom: 6px;
 }
 
 header nav ul li a {
-  color: #8dc000f3;
+  color: #fafafff3;
   text-decoration: none;
 }
