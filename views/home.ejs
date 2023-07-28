@@ -18,7 +18,13 @@
         <ul>
             <% for(post of posts) { %>
                 <li>
-                    <p><%= post.content %> <abbr title="<%= post.user.email %>"><span><%= post.user.name %></span></abbr> </p>
+                    <p>
+                        <%= post.content %> 
+                        <abbr title="<%= post.user.email %>"><span><%= post.user.name %></span></abbr>
+                        <% if (locals.user && locals.user.id === post.user.id) { %>
+                            <small><a href="/posts/delete/<%= post.id %>">delete-post</a></small>
+                        <% } %>
+                    </p>
                     <div class="post-comments">
                         <% if (locals.user) { %>
                             <form class="post-comments-input" action="/comments/create" method="post">
