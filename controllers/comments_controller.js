@@ -42,3 +42,32 @@ module.exports.create = function (request, response) {
             return response.redirect('/');
         });
 };
+
+module.exports.destroy = function (request, response) { 
+    Comment.findById(request.params.id)
+        .then(comment => { 
+            if (comment.user == request.user.id) { 
+                let postId = comment.post;
+                console.log('post id ::', postId);
+
+                // comment.remove();
+                comment.deleteOne(); // Replace comment.remove() with comment.deleteOne()
+
+                Post.findByIdAndUpdate(postId, {$pull: {comments: request.params.id}})
+                    .then(post => {
+                        console.log('deleted comment ::', post);
+                        return response.redirect('back');
+                    })
+                    .catch(error => {
+                        console.log('unable to delete post comment ::', error);
+                    });
+            } else {
+                console.log('comment user and request user is mismatch ::', comment);
+                return response.redirect('back');
+            }
+        })
+        .catch(error => { 
+            console.log('Unable to find to delete ::', request.params.id);
+            console.log('error ::', error);
+        });
+};
