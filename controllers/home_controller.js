@@ -7,6 +7,12 @@ module.exports.home = function (request, response) {
 
     Post.find({})
         .populate('user')
+        .populate({
+            path: 'comments',
+            populate: {
+                path: 'user',
+            }
+        })
         .exec()
         .then(posts => {
             return response.render('home', {

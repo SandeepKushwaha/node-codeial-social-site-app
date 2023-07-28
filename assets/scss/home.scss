@@ -10,5 +10,21 @@
         ul {
             padding: 10px auto;
         }
+
+        .post-comments {
+            // background-color: #ffffffd0;
+            border: 1px solid #4e4a4a31;
+            padding: 8px;
+
+            .post-comments-input {
+                padding-left: 10px;
+            }
+
+            .post-comments-list {
+                margin: 10px;
+                padding: 6px 10px;
+                // background-color: #FFF;
+            }
+        }
     }
 }
