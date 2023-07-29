@@ -1,9 +1,17 @@
 const User = require('../models/user');
 
 module.exports.profile = function (request, response) {
-    return response.render('user_profile', {
-        title: 'User Profile',
-    });
+    User.findById(request.params.id)
+        .then(user => { 
+            return response.render('user_profile', {
+                title: 'User Profile',
+                profile_user: user,
+            });
+        })
+        .catch(error => { 
+            console.log('User not found ::', error);
+            return response.redirect('back');
+        });
 };
 
 // adding some action

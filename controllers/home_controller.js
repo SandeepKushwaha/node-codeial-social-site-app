@@ -1,5 +1,7 @@
 const Post = require('../models/post');
 
+const User = require('../models/user');
+
 module.exports.home = function (request, response) { 
     // return response.end('<h1>Express is up for Codeial!</h1>');
     // console.log('cookies for home controller::', request.cookies);
@@ -15,10 +17,17 @@ module.exports.home = function (request, response) {
         })
         .exec()
         .then(posts => {
-            return response.render('home', {
-                title: 'Codeial | Home',
-                posts: posts,
-            });
+            User.find({})
+                .then(users => { 
+                    return response.render('home', {
+                        title: 'Codeial | Home',
+                        posts: posts,
+                        all_users: users,
+                    });
+                })
+                .catch(error => { 
+                    console.log('Unable to find all users ::', error);
+                });
         })
         .catch(error => {
             console.log('Error in fetching posts:', error);
