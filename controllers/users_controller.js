@@ -14,6 +14,22 @@ module.exports.profile = function (request, response) {
         });
 };
 
+module.exports.update = function (request, response) {
+    if (request.user.id == request.params.id) {
+        // User.findByIdAndUpdate(request.params.id, { name: request.body.name, email: request.body.email })
+        User.findByIdAndUpdate(request.params.id, request.body) // because of request.body is exectly same as name and email
+            .then(user => { 
+                console.log('Updated user ::', user);
+                return response.redirect('back');
+            })
+            .catch(error => { 
+                console.log('Error on update User ::', error);
+            });
+    } else {
+        return response.status(401).send('Unauthorized');
+    }
+}
+
 // adding some action
 
 // render the sign up page

@@ -9,6 +9,9 @@ const usersController = require('../controllers/users_controller');
 // router configuration
 router.get('/profile/:id', passport.checkAuthentication, usersController.profile);
 
+// user update profile
+router.post('/update/:id', passport.checkAuthentication, usersController.update);
+
 // user signup 
 router.get('/sign-up', usersController.signUp);
 // user signin 
