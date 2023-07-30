@@ -1,25 +1,74 @@
-#feed-posts .post-form {
-  align-items: center;
+.home-container {
+  display: flex;
 }
 
-#feed-posts .posts-list-container {
+.home-container a {
+  text-decoration: none;
+  color: #4914daec;
+}
+
+.home-container .section-title {
+  color: #37198bec;
+  margin-block: 0;
+  font-size: 2em;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #0022;
+  padding-left: 10px;
+}
+
+.home-container #feed-posts {
+  width: 70%;
+  padding: 10px;
+}
+
+.home-container #feed-posts .post-form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #0022;
+}
+
+.home-container #feed-posts .post-form .row {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.home-container #feed-posts .post-form .row label {
+  padding: 10px;
+}
+
+.home-container #feed-posts .post-form .row textarea {
+  padding: 10px;
+}
+
+.home-container #feed-posts .posts-list-container {
   margin: 10px 24px;
 }
 
-#feed-posts .posts-list-container ul {
+.home-container #feed-posts .posts-list-container ul {
   padding: 10px auto;
 }
 
-#feed-posts .posts-list-container .post-comments {
+.home-container #feed-posts .posts-list-container .post-comments {
   border: 1px solid #4e4a4a31;
   padding: 8px;
 }
 
-#feed-posts .posts-list-container .post-comments .post-comments-input {
+.home-container #feed-posts .posts-list-container .post-comments .post-comments-input {
   padding-left: 10px;
 }
 
-#feed-posts .posts-list-container .post-comments .post-comments-list {
+.home-container #feed-posts .posts-list-container .post-comments .post-comments-list {
   margin: 10px;
   padding: 6px 10px;
+}
+
+.home-container .user-friends {
+  width: 30%;
+  padding: 10px;
+  border-left: 1px solid #0022;
 }
