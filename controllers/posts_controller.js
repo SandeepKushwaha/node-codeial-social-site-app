@@ -2,8 +2,48 @@ const Post = require('../models/post');
 
 const Comment = require('../models/comment');
 
+// async-await based example
+module.exports.create = async function (request, response) {
+    if (!request.user || !request.user.id) {
+        console.log('User not authenticated.');
+        // Handle the error, e.g., render an error page or redirect to login
+        return response.status(401).json({ status: 'error', message: 'User not authenticated.' });
+    }
 
-module.exports.create = function (request, response) {
+    try { 
+        await Post.create({
+            content: request.body.content,
+            user: request.user.id
+        });
+        
+        return response.redirect('back');
+    } catch (error) { 
+        console.log('Error in creating post::', error);
+        return;
+    }
+};
+
+module.exports.destroy = async function (request, response) {
+    try { 
+        let post = await Post.findById(request.params.id);
+
+        if (post.user == request.user.id) {
+            post.deleteOne(); // Replace post.remove() with post.deleteOne()
+
+            await Comment.deleteMany({ post: request.params.id });
+            return response.redirect('back');
+        } else {
+            console.log('Unable to delete the post ::', post);
+            return response.redirect('back');
+        }
+    } catch (error) { 
+        console.log('Error in destring post::', error);
+        return;
+    }
+};
+
+// promise with then-catch based example 
+/*module.exports.create = function (request, response) {
     if (!request.user || !request.user.id) {
         console.log('User not authenticated.');
         // Handle the error, e.g., render an error page or redirect to login
@@ -57,4 +97,4 @@ module.exports.destroy = function (request, response) {
             console.log('Error on deleting post ::', error);
         });
 };
-
+*/
