@@ -6,6 +6,7 @@ module.exports.create = function (request, response) {
     // Check if the content is present and not empty
     if (!request.body.content || request.body.content.trim() === '') {
         console.log('Comment content is required');
+        response.flash('error', 'Comment content is required');
         return response.redirect('/');
     }
 
@@ -24,21 +25,25 @@ module.exports.create = function (request, response) {
                     console.log('\n');
                     post.comments.push(comment);
                     post.save();
+                    request.flash('success', 'Comment Posted.');
                     return response.redirect('/');
                 })
                 .catch(error => {
                     console.log('Error in creating Comments ::', error);
                     // handle error
+                    request.flash('error', 'Error on creating Comment.');
                     return response.redirect('/');
                 });
             } else {
                 console.log('post not found ::', post);
+                request.flash('error', 'Post not found.');
                 return response.redirect('/');
             }
         })
         .catch(error => {
             console.log('Error in finding Post ::', error);
             // handle error
+            request.flash('error', 'Error on Finding Post.');
             return response.redirect('/');
         });
 };
@@ -56,6 +61,7 @@ module.exports.destroy = function (request, response) {
                 Post.findByIdAndUpdate(postId, {$pull: {comments: request.params.id}})
                     .then(post => {
                         console.log('deleted comment ::', post);
+                        request.flash('success', 'Comment Deleted Successfully.');
                         return response.redirect('back');
                     })
                     .catch(error => {
@@ -63,11 +69,13 @@ module.exports.destroy = function (request, response) {
                     });
             } else {
                 console.log('comment user and request user is mismatch ::', comment);
+                request.flash('error', 'Comment user and request user is Mismatch.');
                 return response.redirect('back');
             }
         })
         .catch(error => { 
             console.log('Unable to find to delete ::', request.params.id);
             console.log('error ::', error);
+            request.flash('error', 'Unable to find to Delete.');
         });
 };

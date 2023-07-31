@@ -7,6 +7,7 @@ module.exports.create = async function (request, response) {
     if (!request.user || !request.user.id) {
         console.log('User not authenticated.');
         // Handle the error, e.g., render an error page or redirect to login
+        request.flash('error', 'User not authenticated.');
         return response.status(401).json({ status: 'error', message: 'User not authenticated.' });
     }
 
@@ -16,9 +17,11 @@ module.exports.create = async function (request, response) {
             user: request.user.id
         });
         
+        request.flash('success', 'Your Post Posted Successfully.');
         return response.redirect('back');
     } catch (error) { 
         console.log('Error in creating post::', error);
+        request.flash('error', 'Error on creating post.');
         return;
     }
 };
@@ -31,13 +34,16 @@ module.exports.destroy = async function (request, response) {
             post.deleteOne(); // Replace post.remove() with post.deleteOne()
 
             await Comment.deleteMany({ post: request.params.id });
+            request.flash('success', 'Comment deleted Successfully.');
             return response.redirect('back');
         } else {
             console.log('Unable to delete the post ::', post);
+            response.flash('error', 'Unable to delete the Post.');
             return response.redirect('back');
         }
     } catch (error) { 
         console.log('Error in destring post::', error);
+        response.flash('error', 'Error on Deleting Post.');
         return;
     }
 };

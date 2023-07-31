@@ -14,3 +14,25 @@ input {
   padding: 8px 12px;
   margin: 8px 4px;
 }
+
+.flash-message {
+  padding: 10px 16px;
+  text-transform: capitalize;
+  font-size: 1rem;
+  margin-block: 0px;
+  position: fixed;
+  top: 36px;
+  right: 4%;
+  display: flex;
+  margin: 10px auto;
+  width: -moz-fit-content;
+  width: fit-content;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  background: #34a339;
+  border: 1px solid #FFF;
+  border-radius: 2px;
+  box-shadow: 0px 0px 4px 0px #414141;
+  color: #FFF;
+}

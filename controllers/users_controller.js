@@ -79,6 +79,7 @@ module.exports.create = function (request, response) {
 
 // sign in and create a session for the user
 module.exports.createSession = function (request, response) {
+    request.flash('success', 'Logged in Successfully.');
     return response.redirect('/');
 };
 
@@ -88,7 +89,8 @@ module.exports.destroySession = function (request, response) {
             console.log('Error in logging out:', err);
             return response.status(500).json({ error: 'Internal server error' });
         }
-        
+
+        request.flash('success', 'Logged Out Successfully.');        
         return response.redirect('/');
     });
 }
