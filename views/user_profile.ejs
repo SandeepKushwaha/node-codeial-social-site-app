@@ -4,7 +4,19 @@
 
 <% if (user.id == profile_user.id) { %>
     <!-- if user matches then show the form -->
-    <form action="/users/update/<%= profile_user.id %>" method="post">
+    <button type="button" id="update-profile-btn" onclick="enableUpdateProfile()" >Update Profile</button>
+    <div class="user-profile-info" id="user-profile-info" style="visibility: visible; content-visibility: visible;" >
+        <div class="row">
+            <strong>User Id: </strong><span  style="user-select: none; color: #575757; text-transform: uppercase;"><%= profile_user.id %></span>
+        </div>
+        <div class="row">
+            <strong>Name: </strong><span><%= profile_user.name %></span>
+        </div>
+        <div class="row">
+            <strong>Email: </strong><span><%= profile_user.email %></span>
+        </div>
+    </div>
+    <form class="user-profile-info-form" id="user-profile-info-form" action="/users/update/<%= profile_user.id %>" style="visibility: hidden; content-visibility: hidden;" method="post">
         <label for="name">Your Name</label>
         <input type="text" name="name" id="name" placeholder="Your name" required value="<%= profile_user.name %>" />
         <label for="email">Your Email</label>
@@ -13,7 +25,17 @@
     </form>
 <% } else { %>
     <!-- else show only the profile info -->
-    <p>user id: <span  style="user-select: none; color: #575757; text-transform: uppercase;"><%= profile_user.id %></span></p>
-    <p>name: <%= profile_user.name %></p>
-    <p>email: <%= profile_user.email %></p>
+    <div class="user-profile-info" id="user-profile-info" style="visibility: visible;" >
+        <div class="row">
+            <strong>User Id: </strong><span  style="user-select: none; color: #575757; text-transform: uppercase;"><%= profile_user.id %></span>
+        </div>
+        <div class="row">
+            <strong>Name: </strong><span><%= profile_user.name %></span>
+        </div>
+        <div class="row">
+            <strong>Email: </strong><span><%= profile_user.email %></span>
+        </div>
+    </div>
 <% } %>
+
+<script src="/js/script.js"></script>

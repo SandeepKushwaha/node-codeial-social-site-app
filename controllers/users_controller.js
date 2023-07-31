@@ -34,6 +34,9 @@ module.exports.update = function (request, response) {
 
 // render the sign up page
 module.exports.signUp = function (request, response) {
+    if (request.user) {
+        return response.redirect(`/users/profile/${request.user.id}`);
+    }
     return response.render('user_sign_up', {
         title: 'Codeial | Sign Up',
     });
@@ -41,6 +44,9 @@ module.exports.signUp = function (request, response) {
 
 // render the sign in page
 module.exports.signIn = function (request, response) {
+    if (request.user) {
+        return response.redirect(`/users/profile/${request.user.id}`);
+    }
     return response.render('user_sign_in', {
         title: 'Codeial | Sign In',
     });

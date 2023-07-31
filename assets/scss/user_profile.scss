@@ -2,8 +2,36 @@
 
 main {
     text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
     
     h1 {
         color: #289743;
+        text-align: center;
+        margin-top: 20px !important;
+        margin: 10px auto;
+        margin-block: 0px;
+    }
+
+    #update-profile-btn {
+        padding: 10px 16px;
+        margin: 20px auto;
+    }
+
+    .user-profile-info {
+        visibility: visible;
+
+        .row {
+            padding: 10px;
+
+            strong {
+                margin-right: 10px;
+            }
+        }
+    }
+    .user-profile-info-form {
+        visibility: hidden;
     }
 }
