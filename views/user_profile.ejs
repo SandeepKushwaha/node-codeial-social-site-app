@@ -17,11 +17,17 @@
         </div>
     </div>
     <form class="user-profile-info-form" id="user-profile-info-form" action="/users/update/<%= profile_user.id %>" style="visibility: hidden; content-visibility: hidden;" method="post">
-        <label for="name">Your Name</label>
-        <input type="text" name="name" id="name" placeholder="Your name" required value="<%= profile_user.name %>" />
-        <label for="email">Your Email</label>
-        <input type="email" name="email" id="email" placeholder="Your email" required value="<%= profile_user.email %>" />
-        <input type="submit" value="Update" />
+        <div class="row">
+            <label for="name">Your Name</label>
+            <input type="text" name="name" id="name" placeholder="Your name" required value="<%= profile_user.name %>" />
+        </div>
+        <div class="row">
+            <label for="email">Your Email</label>
+            <input type="email" name="email" id="email" placeholder="Your email" required value="<%= profile_user.email %>" />
+        </div>
+        <div class="row">
+            <input type="submit" value="Update" />
+        </div>
     </form>
 <% } else { %>
     <!-- else show only the profile info -->
@@ -38,4 +44,4 @@
     </div>
 <% } %>
 
-<!-- <script src="/js/script.js"></script> -->
+<script src="/js/script.js"></script>

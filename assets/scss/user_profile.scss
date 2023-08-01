@@ -21,7 +21,7 @@ main {
     }
 
     .user-profile-info {
-        visibility: visible;
+        // visibility: visible;
 
         .row {
             padding: 10px;
@@ -34,6 +34,23 @@ main {
         }
     }
     .user-profile-info-form {
-        visibility: hidden;
+        // visibility: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 40px;
+        box-shadow: 0px 0px 3px 0px #222;
+        border-radius: 4px;
+
+        .row {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: nowrap;
+
+            label {
+                margin-right: 10px;
+            }
+        }
     }
 }
