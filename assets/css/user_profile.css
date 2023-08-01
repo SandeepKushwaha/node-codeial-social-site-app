@@ -30,6 +30,8 @@ main .user-profile-info .row {
 
 main .user-profile-info .row strong {
   margin-right: 10px;
+  color: #340dc4;
+  text-transform: capitalize;
 }
 
 main .user-profile-info-form {

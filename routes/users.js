@@ -13,9 +13,9 @@ router.get('/profile/:id', passport.checkAuthentication, usersController.profile
 router.post('/update/:id', passport.checkAuthentication, usersController.update);
 
 // user signup 
-router.get('/sign-up', passport.checkAuthentication, usersController.signUp);
+router.get('/sign-up', usersController.signUp);
 // user signin 
-router.get('/sign-in', passport.checkAuthentication, usersController.signIn);
+router.get('/sign-in', usersController.signIn);
 
 // user signing up 
 router.post('/create', usersController.create);

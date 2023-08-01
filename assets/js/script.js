@@ -4,8 +4,6 @@
     };
     
     function enableUpdateProfile() {
-        console.log('hello');
-        let v = true;
         const infoDiv = document.getElementById('user-profile-info');
         const infoForm = document.getElementById('user-profile-info-form');
         if (infoDiv.style.visibility == "visible") {

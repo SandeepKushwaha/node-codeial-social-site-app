@@ -19,9 +19,8 @@
         <%- body %>
     </main>
     <%- include('_footer'); %>
-    <%- script %>
+    <!-- this is not an error it's just an ejs. -->
     <script>
-        //  this is not an error it's just an ejs.
         <% if (flash.success && flash.success.length > 0) { %>
             new Noty({
                 theme: 'relax',
@@ -43,5 +42,6 @@
         <% } %>
     </script>
     <script type="javascript/text" src="/js/script.js"></script>
+    <%- script %>
 </body>
 </html>
