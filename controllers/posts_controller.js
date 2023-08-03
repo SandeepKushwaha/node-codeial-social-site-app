@@ -22,7 +22,7 @@ module.exports.create = async function (request, response) {
                 data: {
                     post: post
                 },
-                message: "Post created",
+                message: "Post created Successfully.",
             });
         }
 
