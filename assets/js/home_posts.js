@@ -12,11 +12,12 @@
                 data: postForm.serialize(),
                 success: function (data) { 
                     console.log(data);
-                    console.log(data.data);
-                    console.log(data.data.post);
+                    // console.log(data.data);
+                    // console.log(data.data.post);
                     let newPost = newPostDOM(data.data.post);
                     $('#posts-list-container>ul').prepend(newPost);
                     postTextArea.value = '';
+                    deletePost($(' .delete-post-button', newPost));
                 },
                 error: function (error) { 
                     console.log(error.responseText);
@@ -48,6 +49,24 @@
                 </div>
             </li>
         `);
+    }
+
+    // Method to delete a post from DOM
+    let deletePost = function (deleteLink) {
+        $(deleteLink).click(function (e) { 
+            e.preventDefault();
+
+            $.ajax({ 
+                type: 'get',
+                url: $(deleteLink).prop('href'),
+                success: function (data) { 
+                    $(`#post-${data.data.post_id}`).remove();
+                },
+                error: function (error) { 
+                    console.log(error.responseText);
+                },
+            });
+        });
     }
 
     createPost();

@@ -16,7 +16,8 @@ module.exports.create = async function (request, response) {
             content: request.body.content,
             user: request.user.id
         });
-        
+        request.flash('success', 'Your Post Posted Successfully.');
+
         if (request.xhr) {
             return response.status(200).json({
                 data: {
@@ -26,7 +27,6 @@ module.exports.create = async function (request, response) {
             });
         }
 
-        request.flash('success', 'Your Post Posted Successfully.');
         return response.redirect('back');
     } catch (error) { 
         console.log('Error in creating post::', error);
@@ -43,7 +43,17 @@ module.exports.destroy = async function (request, response) {
             post.deleteOne(); // Replace post.remove() with post.deleteOne()
 
             await Comment.deleteMany({ post: request.params.id });
-            request.flash('success', 'Comment deleted Successfully.');
+            request.flash('success', 'Post deleted Successfully.');
+
+            if (request.xhr) {
+                console.log('request data::', post);
+                return response.status(200).json({
+                    data: {
+                        post_id: request.params.id,
+                    },
+                    message: "Post Deleted successfully.",
+                });
+            }
             return response.redirect('back');
         } else {
             console.log('Unable to delete the post ::', post);
