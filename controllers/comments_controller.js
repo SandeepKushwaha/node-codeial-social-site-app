@@ -26,6 +26,16 @@ module.exports.create = function (request, response) {
                     post.comments.push(comment);
                     post.save();
                     request.flash('success', 'Comment Posted.');
+
+                    if (request.xhr) {
+                        return response.status(200).json({
+                            data: {
+                                comment: comment
+                            },
+                            message: "Post created Successfully.",
+                        });
+                    } 
+                    
                     return response.redirect('/');
                 })
                 .catch(error => {
