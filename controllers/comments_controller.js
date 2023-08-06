@@ -72,6 +72,17 @@ module.exports.destroy = function (request, response) {
                     .then(post => {
                         console.log('deleted comment ::', post);
                         request.flash('success', 'Comment Deleted Successfully.');
+
+                        if (request.xhr) {
+                            console.log('request data::', comment);
+                            return response.status(200).json({
+                                data: {
+                                    comment_id: request.params.id,
+                                },
+                                message: "Comment Deleted successfully.",
+                            });
+                        }
+
                         return response.redirect('back');
                     })
                     .catch(error => {

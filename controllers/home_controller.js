@@ -12,6 +12,7 @@ module.exports.home = async function (request, response) {
         .populate('user')
         .populate({
             path: 'comments',
+            options: { sort: { createdAt: -1 } }, // Sort comments in descending order based on createdAt field
             populate: {
                 path: 'user',
             }
