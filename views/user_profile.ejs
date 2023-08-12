@@ -7,6 +7,11 @@
     <button type="button" id="update-profile-btn" onclick="enableUpdateProfile()" >Update Profile</button>
     <div class="user-profile-info" id="user-profile-info" style="visibility: visible; content-visibility: visible;" >
         <div class="row">
+            <div class="user-avatar-div">
+                <img class="user-profile-avatar" src="<%= user.avatar %>" alt="<%= user.name %>" width="100">
+            </div>
+        </div>
+        <div class="row">
             <strong>User Id: </strong><span  style="user-select: none; color: #575757; text-transform: uppercase;"><%= profile_user.id %></span>
         </div>
         <div class="row">
@@ -16,7 +21,7 @@
             <strong>Email: </strong><span><%= profile_user.email %></span>
         </div>
     </div>
-    <form class="user-profile-info-form" id="user-profile-info-form" action="/users/update/<%= profile_user.id %>" style="visibility: hidden; content-visibility: hidden;" method="post">
+    <form class="user-profile-info-form" id="user-profile-info-form" action="/users/update/<%= profile_user.id %>" style="visibility: hidden; content-visibility: hidden;" enctype="multipart/form-data" method="post">
         <div class="row">
             <label for="name">Your Name</label>
             <input type="text" name="name" id="name" placeholder="Your name" required value="<%= profile_user.name %>" />
@@ -26,12 +31,21 @@
             <input type="email" name="email" id="email" placeholder="Your email" required value="<%= profile_user.email %>" />
         </div>
         <div class="row">
+            <label for="avatar">Profile Picture</label>
+            <input type="file" name="avatar" id="avatar" />
+        </div>
+        <div class="row">
             <input type="submit" value="Update" />
         </div>
     </form>
 <% } else { %>
     <!-- else show only the profile info -->
     <div class="user-profile-info" id="user-profile-info" style="visibility: visible;" >
+        <div class="row">
+            <div class="user-avatar-div">
+                <img class="user-profile-avatar" src="/images/avatar.png" alt="avatar" width="100">
+            </div>
+        </div>
         <div class="row">
             <strong>User Id: </strong><span  style="user-select: none; color: #575757; text-transform: uppercase;"><%= profile_user.id %></span>
         </div>
