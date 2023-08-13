@@ -9,5 +9,6 @@ const postAPI = require('../../../controllers/api/v1/posts_api');
 // Posts APIs routers will be here.
 router.get('/', postAPI.index);
 
+router.delete('/:id', postAPI.destroy);
 
 module.exports = router;

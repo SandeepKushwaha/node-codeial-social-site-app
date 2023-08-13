@@ -24,3 +24,31 @@ module.exports.index = async function (request, response) {
         posts: posts
     });
 };
+
+
+// DELETE Request Controller for (/api/v1/posts/{id})
+module.exports.destroy = async function (request, response) {
+    try { 
+        let post = await Post.findById(request.params.id);
+
+        // if (post.user == request.user.id) {
+            post.deleteOne(); // Replace post.remove() with post.deleteOne()
+
+            await Comment.deleteMany({ post: request.params.id });
+        
+            return response.status(200).json({
+                message: "Post and associated comments Deleted Successfully.",
+                post: post,
+            });
+        // } else {
+        //     console.log('Unable to delete the post ::', post);
+        //     response.flash('error', 'Unable to delete the Post.');
+        //     return response.redirect('back');
+        // }
+    } catch (error) { 
+        console.error('Delete Post Error on API call :', error);
+        return response.status(500).json({
+            message: "Internal Server Error.",
+        });
+    }
+};
