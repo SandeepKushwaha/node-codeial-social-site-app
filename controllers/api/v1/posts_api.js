@@ -4,8 +4,8 @@ const Post = require('../../../models/post');
 
 const Comment = require('../../../models/comment');
 
-// Get Request Controller for (/api/v1/posts)
-module.exports.index = async function (request, response) {
+// Get Request Controller for (/api/v1/posts) [async-await]
+module.exports.getAll = async function (request, response) {
 
     let posts = await Post.find({})
         .sort('-createdAt')
@@ -25,8 +25,27 @@ module.exports.index = async function (request, response) {
     });
 };
 
+// Get by ID Request Controller for (/api/v1/post/{Id}) [promise-then]
+module.exports.getById = function (request, response) { 
+    Post.findById(request.params.id)
+        .then(post => {
+            if (post) {
+                return response.status(200).json({
+                    message: "Post Found.",
+                    post: post,
+                });
+            } else {
+                return response.status(500).json({
+                    message: "Internal Server Error.",
+                });
+            }
+        })
+        .catch(error => {
+            console.log(`Error on Getting post id::${request.params.id}===${error}`);
+        });
+};
 
-// DELETE Request Controller for (/api/v1/posts/{id})
+// DELETE Request Controller for (/api/v1/posts/{id}) [async-await]
 module.exports.destroy = async function (request, response) {
     try { 
         let post = await Post.findById(request.params.id);
