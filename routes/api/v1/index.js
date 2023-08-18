@@ -7,4 +7,6 @@ const router = express.Router();
 // Version 1(v1) APIs routers will be here.
 router.use('/posts', require('./posts'));
 
+router.use('/users', require('./users'));
+
 module.exports = router;
