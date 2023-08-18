@@ -17,7 +17,7 @@ module.exports.createSession = async function (request, response) {
             message: "Sign in Successfully! Here is your JWT Token, Please keep it safe!",
             data: {
                 token: jwt.sign(user.toJSON(), 'Codeial', { 
-                    expiresIn: '10000',
+                    expiresIn: '100000',
                 }),
             },
         });
