@@ -1,6 +1,9 @@
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+// configure to load .env secret(s) on app/server. such as google clientId, clientSecret, callbackUrl
+require('dotenv').config()
+// console.log(process.env) /=/ remove this after you've confirmed it is working
 const app = express();
 const port = 8000;
 const expressLayouts = require('express-ejs-layouts');
