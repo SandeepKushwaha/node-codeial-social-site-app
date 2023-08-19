@@ -8,6 +8,21 @@ body {
 
     .layout-main { 
         min-height: 80vh;
+
+        p {
+            text-align: center;
+            margin-top: 20px;
+            margin-block-start: 1.2em;
+
+            .btn-google-sign-in {
+                text-decoration: none;
+                border: 1px solid #1d1757ef;
+                background-color: #1e43e7ea;
+                color: #FFF;
+                padding: 10px 20px;
+                border-radius: 2px;
+            }
+        }
     }
 }
 

@@ -17,6 +17,9 @@ const passportLocal = require('./config/passport-local-strategy');
 // used for JWT
 const passportJWT = require('./config/passport-jwt-strategy');
 
+// used for Google Oauth
+const passportGoogleOauth = require('./config/passport-google-oauth2-strategy');
+
 const MongoStore = require('connect-mongo')(session);
 
 const sassMiddleware = require('node-sass-middleware');
