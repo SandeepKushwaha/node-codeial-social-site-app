@@ -10,13 +10,13 @@ body .layout-main {
   min-height: 80vh;
 }
 
-body .layout-main p {
+body .layout-main .sign-in-content {
   text-align: center;
   margin-top: 20px;
   margin-block-start: 1.2em;
 }
 
-body .layout-main p .btn-google-sign-in {
+body .layout-main .sign-in-content .btn-google-sign-in {
   text-decoration: none;
   border: 1px solid #1d1757ef;
   background-color: #1e43e7ea;
